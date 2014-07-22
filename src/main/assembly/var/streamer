@@ -23,6 +23,7 @@
 # Description:       Start the streamer service to stream images via ZMQ
 ### END INIT INFO
 
+. /etc/rc.status
 
 # Use Java 7
 PATH=/opt/jre/bin:$PATH
@@ -39,10 +40,17 @@ chown $USER $LOGFILE
 
 case "$1" in
 start)
+  # TODO Replace this with startproc command: startproc -f -p $PIDFILE $CRON_BIN
   $SU "PATH=/opt/jre/bin:$PATH $HOME/latest/bin/streamer -d /ramdisk -p 8080 > $LOGFILE 2>&1 &"
   ;;
 stop)
+  # TODO replace this by killproc command: killproc -TERM -p $PIDFILE $CRON_BIN
   $SU "pkill -f 'java .* $HOME' >> $LOGFILE 2>&1 &"
+  ;;
+status)
+  echo -n "Streamer: "
+  checkproc $HOME/latest/bin/streamer
+  rc_status -v
   ;;
 restart)
   $0 stop
