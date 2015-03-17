@@ -25,15 +25,18 @@
 
 . /etc/rc.status
 
-# Use Java 7
-PATH=/opt/jre/bin:$PATH
+# Requires Java >= 1.7
+PATH=/usr/java/default/bin:$PATH
 export PATH
 
 USER=det
 HOME=/opt/streamer
-SU="su --login  $USER --command  "
-
 LOGFILE=/var/log/streamer
+# Make sure that the ramdisk is writeable by the detector user!
+RAMDISK=/tmp/ramdisk
+PORT=8080
+
+SU="su --login  $USER --command  "
 
 touch $LOGFILE
 chown $USER $LOGFILE
@@ -41,7 +44,7 @@ chown $USER $LOGFILE
 case "$1" in
 start)
   # TODO Replace this with startproc command: startproc -f -p $PIDFILE $CRON_BIN
-  $SU "PATH=/opt/jre/bin:$PATH $HOME/latest/bin/streamer -d /ramdisk -p 8080 > $LOGFILE 2>&1 &"
+  $SU "PATH=/opt/jre/bin:$PATH $HOME/latest/bin/streamer -d $RAMDISK -p $PORT > $LOGFILE 2>&1 &"
   ;;
 stop)
   # TODO replace this by killproc command: killproc -TERM -p $PIDFILE $CRON_BIN

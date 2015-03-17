@@ -270,6 +270,7 @@ curl http://<hostname>:<port>/stream
 The **Stream** package required Java 7 or greater.
 
 ## Simple Installation
+Download the latest streamer from [here](http://slsyoke4.psi.ch:8081/artifactory/releases/ch.psi.streamer-1.0.2-bin.zip)
 Extract zip file
 
 ## Daemon Installation
@@ -287,6 +288,14 @@ Register Init Script
 cp latest/var/streamer /etc/init.d/
 chmod 755 /etc/init.d/streamer
 ```
+
+Create RAMDISK
+
+```
+mkdir /tmp/ramdisk
+```
+
+! Make sure that the ramdisk is writable by the detector user !
 
 On RHEL Linux
 
