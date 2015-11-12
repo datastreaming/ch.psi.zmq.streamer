@@ -13,6 +13,7 @@ import javax.ws.rs.core.UriBuilder;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.GnuParser;
 import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.MissingOptionException;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
@@ -50,19 +51,43 @@ public class StreamServer {
 	        .withDescription( "Base directory" )
 	        .create( "d" );
 		options.addOption(optionD);
+		
+		@SuppressWarnings("static-access")
+		Option optionI = OptionBuilder.withArgName( "interface" )
+			.hasArg()
+		    .withDescription( "Interface to bind ZMQ socket" )
+		    .create( "i" );
+		options.addOption(optionI);
 
 		GnuParser parser = new GnuParser();
-		CommandLine line = parser.parse(options, args);
+		CommandLine line;
+		try{
+			line = parser.parse(options, args);
+		}
+		catch(Exception e){
+			if(e instanceof MissingOptionException){
+				System.err.println(((MissingOptionException)e).getMessage());
+			}
+			HelpFormatter f = new HelpFormatter();
+			f.printHelp("streamer", options);
+			return;
+		}
 
 		if (line.hasOption("p")) {
 			webserverPort = Integer.parseInt(line.getOptionValue("p"));
 		}
+		
 		if (line.hasOption("s")) {
 			hostname=line.getOptionValue("s");
 		}
 		else{
 			hostname = InetAddress.getLocalHost().getHostName();
 		}
+
+		if (line.hasOption("i")){
+			configuration.setNetworkInterface(line.getOptionValue(optionI.getOpt()));
+		}
+		
 		if (line.hasOption("h")) {
 			HelpFormatter f = new HelpFormatter();
 			f.printHelp("streamer", options);

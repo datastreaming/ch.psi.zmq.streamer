@@ -7,7 +7,7 @@ It contains 2 applications, a simple receiver and a stream server. The stream se
 # Usage
 
 ## Receiver
-The file receiver can be started via the `receiver` script located in the `bin` folder. The receiver will store the files relatively to 
+The file receiver can be started via the `receiver` script located in the `bin` folder. The receiver will store the files relatively to
 the directory from which the receiver script is started.
 
 The usage of `receiver` is as follows:
@@ -15,6 +15,7 @@ The usage of `receiver` is as follows:
 ```
 Usage: receiver
  -h         Help
+ -i <interface>   Interface to bind ZMQ socket
  -p <arg>   Source port (default: 8888)
  -s <arg>   Source address [required]
  -d <path>	Base path [required]
@@ -36,13 +37,13 @@ Usage: streamer
 Streamer comes with a web UI. One can use this UI to list and manage current streams.
 The web UI is accessible on `http://<host>:8080/static/` . Note: It is important to have the last / inside the url!
 
-![Screenshot](browse/screenshot.png?raw) 
+![Screenshot](browse/screenshot.png?raw)
 
 
 # Development
 
 ## Build
-The project is build via Maven. The installation zip package can be build by executing `mvn clean compile assembly:assembly` . 
+The project is build via Maven. The installation zip package can be build by executing `mvn clean compile assembly:assembly` .
 After the build the zip file will be inside the `target` directory.
 
 ## REST API
@@ -63,11 +64,11 @@ Accept: application/json
 200 - [ ]
 ```
 
-Register for stream changes 
+Register for stream changes
 
 ```
 GET events
- 
+
 200 - Server Send Event (SSE) stream.
 ```
 
@@ -98,13 +99,13 @@ PUT stream/{id}
 			"streamExsitingFiles":false
 		}
 	]
-    
+
     "header":{},
 
 	"method":"push/pull",
     "port":8888,
     "wipeFile":"false"
-    
+
 }
 
 204 Stream created
@@ -118,7 +119,7 @@ Terminate stream
 ```
 DELETE stream/{id}
 
-200 - 
+200 -
 {
     "status": {
         "sendCount": 4
@@ -194,7 +195,7 @@ Get free space (in bytes) of the the streamers basedir directory
 ```
 GET basedir/space
 
-200 - 
+200 -
 1234556
 ```
 
@@ -203,7 +204,7 @@ Get accounting for last 10 streams (active streams are not included in the list)
 ```
 GET accounting
 
-200 - 
+200 -
 [
     {
         "status": {
@@ -230,7 +231,7 @@ GET accounting
 ]
 ```
  * The first element holds the most recently closed stream, the last the most passed closed stream
- 
+
 
 
 ### Command Line

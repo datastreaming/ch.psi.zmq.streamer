@@ -96,7 +96,7 @@ public class StreamService {
 			s.stop();
 		}
 		
-		final Stream stream = new Stream(configuration.getBasedir());
+		final Stream stream = new Stream(configuration.getBasedir(), configuration.getNetworkInterface());
 		stream.stream(request);
 		streams.put(trackingid, stream);
 		

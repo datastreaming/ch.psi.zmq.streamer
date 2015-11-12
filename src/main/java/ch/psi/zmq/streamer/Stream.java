@@ -58,9 +58,11 @@ public class Stream {
 	private StreamRequest configuration;
 	
 	private final String basedir;
+	private final String networkInterface;
 	
-	public Stream(String basedir){
+	public Stream(String basedir, String networkInterface){
 		this.basedir = basedir;
+		this.networkInterface = networkInterface;
 	}
 	
 	/**
@@ -76,7 +78,7 @@ public class Stream {
 		
 		bus = new AsyncEventBus(Executors.newSingleThreadExecutor());
 		
-		sender = new FileSender(statusBus, request.getMethod(), request.getPort(), request.getHighWaterMark(), request.isWipeFile());
+		sender = new FileSender(statusBus, request.getMethod(), networkInterface, request.getPort(), request.getHighWaterMark(), request.isWipeFile());
 		
 		
 		

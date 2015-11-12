@@ -23,6 +23,7 @@ package ch.psi.zmq.streamer;
  */
 public class StreamServerConfiguration {
 	private String basedir = "/";
+	private String networkInterface = "*";
 	
 	public String getBasedir() {
 		return basedir;
@@ -31,5 +32,12 @@ public class StreamServerConfiguration {
 	public void setBasedir(String basedir) {
 		this.basedir = basedir;
 	}
-	
+
+	public String getNetworkInterface() {
+		return networkInterface;
+	}
+
+	public void setNetworkInterface(String networkInterface) {
+		this.networkInterface = networkInterface;
+	}
 }

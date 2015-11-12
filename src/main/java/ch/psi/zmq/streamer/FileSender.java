@@ -54,16 +54,18 @@ public class FileSender {
 	private boolean wipe = false;
 	private int count = 0;
 	private String method = "push/pull";
+	private String networkInterface = "*";
 	
 	private EventBus statusBus;
 	
-	public FileSender(EventBus statusBus, String method, int port, long highWaterMark, boolean wipe){
+	public FileSender(EventBus statusBus, String method, String networkInterface, int port, long highWaterMark, boolean wipe){
 		this.statusBus = statusBus;
 		
 		this.method = method;
 		this.port = port;
 		this.wipe = wipe;
-		this.highWaterMark=highWaterMark;
+		this.highWaterMark = highWaterMark;
+		this.networkInterface = networkInterface;
 	}
 	
 	public void start(){
@@ -77,7 +79,8 @@ public class FileSender {
 			socket = context.socket(ZMQ.PUSH);
 		}
 		socket.setHWM(highWaterMark);
-		socket.bind("tcp://*:"+port);
+		logger.info("Binding to: "+ "tcp://"+networkInterface+":"+port);
+		socket.bind("tcp://"+networkInterface+":"+port);
 		
 		count = 0;
 	}

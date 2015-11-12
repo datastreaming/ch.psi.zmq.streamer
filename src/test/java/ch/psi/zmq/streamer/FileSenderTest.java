@@ -40,7 +40,7 @@ public class FileSenderTest {
 	public void test() throws InterruptedException {
 		
 		final EventBus bus = new AsyncEventBus(Executors.newSingleThreadExecutor());
-        final FileSender sender = new FileSender(new EventBus(), "push/pull", 9998, 100, false);
+        final FileSender sender = new FileSender(new EventBus(), "push/pull", "*", 9998, 100, false);
         bus.register(sender);
         
         sender.start();

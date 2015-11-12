@@ -41,7 +41,7 @@ public class FileReceiverTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		sender = new FileSender(new EventBus(), "push/pull", 8888, 100, false);
+		sender = new FileSender(new EventBus(), "push/pull", "*", 8888, 100, false);
 		receiver = new FileReceiver("localhost", 8888, "target");
 	}
 
