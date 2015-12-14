@@ -43,8 +43,22 @@ The web UI is accessible on `http://<host>:8080/static/` . Note: It is important
 # Development
 
 ## Build
-The project is build via Maven. The installation zip package can be build by executing `mvn clean compile assembly:assembly` .
-After the build the zip file will be inside the `target` directory.
+The project is build via Gradle. It can be easily build via
+
+```bash
+./gradlew build
+```
+
+__Notes:__ You don't have to have gradle installed on your maschine. All you need is a Java JDK version >= 1.7 .
+
+The installation zip package can be build by
+
+```bash
+./gradlew distribution
+```
+
+Afterwards the installable zip file is available in the `build/distributions` directory.
+
 
 ## REST API
 
