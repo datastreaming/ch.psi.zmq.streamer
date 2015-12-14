@@ -65,10 +65,7 @@ public class Stream {
 		this.networkInterface = networkInterface;
 	}
 	
-	/**
-	 * Start streaming data out to ZMQ
-	 * @throws IOException 
-	 */
+	// Start streaming data out to ZMQ
 	public void stream(final StreamRequest request) throws IOException{
 		
 		this.configuration = request;
@@ -125,9 +122,7 @@ public class Stream {
 	}
 	
 	
-	/**
-	 * Stop datastream
-	 */
+	// Stop datastream
 	public StreamInfo stop(){
 		logger.info("... terminate streaming");
 		

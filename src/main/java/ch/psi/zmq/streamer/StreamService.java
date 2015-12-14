@@ -79,12 +79,7 @@ public class StreamService {
     	return version;
     }
 	
-	/**
-	 * Start streaming for a given tracking id
-	 * @param trackingid
-	 * @param path
-	 * @throws IOException 
-	 */
+	// Start streaming for a given tracking id
 	@PUT
 	@Path("stream/{trackingid}")
 	public void stream(@PathParam("trackingid") final String trackingid, final StreamRequest request) throws IOException{
@@ -144,10 +139,7 @@ public class StreamService {
 		return info;
 	}
 	
-	/**
-	 * Terminate the streaming for a given tracking id
-	 * @param trackingid
-	 */
+	// Terminate the streaming for a given tracking id
 	@DELETE
 	@Path("stream/{trackingid}")
 	public StreamInfo terminate(@PathParam("trackingid") String trackingid){

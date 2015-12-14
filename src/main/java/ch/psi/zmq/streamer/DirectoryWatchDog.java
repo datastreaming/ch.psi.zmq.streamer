@@ -37,14 +37,8 @@ public class DirectoryWatchDog {
 //		watch(path, "glob:*", "", dcount);
 //	}
 	
-	/**
-	 * Watch a given path (i.e. directory) for new files which match a given pattern
-	 * 
-	 * @param path		Directory to watch
-	 * @param dcount	Detection count - number of detection after which watchdog will terminate himselve. If <=0 detection count not set
-	 * @throws IOException
-	 * @throws InterruptedException
-	 */
+	// Watch a given path (i.e. directory) for new files which match a given pattern
+	//Detection count - number of detection after which watchdog will terminate himselve. If <=0 detection count not set
     public void watch(Path path, String pattern, String destinationPath, int dcount) throws IOException, InterruptedException {
     	watch=true;
     	count = 0;
@@ -117,9 +111,7 @@ public class DirectoryWatchDog {
     	}
     }
     
-    /**
-     * Terminate directory watch
-     */
+    // Terminate directory watch
     public void terminate(){
     	watch=false;
     	try {

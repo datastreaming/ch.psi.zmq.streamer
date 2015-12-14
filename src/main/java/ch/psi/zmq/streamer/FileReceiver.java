@@ -77,9 +77,7 @@ public class FileReceiver {
 		receive(null);
 	}
 	
-	/**
-	 * Receive ZMQ messages with pilatus-1.0 header type and write the data part to disk
-	 */
+	// Receive ZMQ messages with pilatus-1.0 header type and write the data part to disk
 	public void receive(Integer numImages){
 		counter = 0;
 		receive = true;

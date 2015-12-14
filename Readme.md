@@ -12,7 +12,7 @@ the directory from which the receiver script is started.
 
 The usage of `receiver` is as follows:
 
-```
+```bash
 Usage: receiver
  -h         Help
  -i <interface>   Interface to bind ZMQ socket
@@ -26,7 +26,7 @@ The stream server can be started via the 'streamer' script located in the `bin` 
 
 The usage of the `streamer` is as follows:
 
-```
+```bash
 Usage: streamer
  -h         Help
  -p <arg>   Webserver port (default: 8080)
@@ -238,31 +238,31 @@ GET accounting
 
 Create stream
 
-```
+```bash
 curl -XPUT --data '{"searchPath":"/Users/ebner/Desktop/Test", "searchPattern":"glob:*","destinationPath":"something"}' --header "Content-Type: application/json" http://<hostname>:<port>/stream/id
 ```
 
 Stop stream
 
-```
+```bash
 curl -XDELETE http://<hostname>:<port>/stream/id
 ```
 
 Get stream status
 
-```
+```bash
 curl http://<hostname>:<port>/stream/id
 ```
 
 Get active streams (monitor)
 
-```
+```bash
 curl -H "Accept: application/json" http://<hostname>:<port>/stream
 ```
 
 Get active streams (monitor)
 
-```
+```bash
 curl http://<hostname>:<port>/stream
 ```
 
@@ -276,7 +276,7 @@ The **Stream** package required Java 7 or greater.
 
 ## Daemon Installation
 
-```
+```bash
 mkdir /opt/streamer
 cd /opt/streamer
 unzip ch.psi.zmq.streamer-<version>-bin.zip
@@ -285,14 +285,14 @@ ln -s ch.psi.zmq.streamer-<version> latest
 
 Register Init Script
 
-```
+```bash
 cp latest/var/streamer /etc/init.d/
 chmod 755 /etc/init.d/streamer
 ```
 
 Create RAMDISK
 
-```
+```bash
 mkdir /tmp/ramdisk
 ```
 
@@ -307,13 +307,13 @@ chkconfig streamer on
 
 On Ubuntu Linux
 
-```
+```bash
 update-rc.d streamer defaults
 ```
 
 Start/Stop Streamer Service
 
-```
+```bash
 service streamer start
 service streamer stop
 ```
