@@ -49,7 +49,7 @@ The project is build via Gradle. It can be easily build via
 ./gradlew build
 ```
 
-__Notes:__ You don't have to have gradle installed on your maschine. All you need is a Java JDK version >= 1.7 .
+__Notes:__ You don't have to have gradle installed on your machine. All you need is a Java JDK version >= 1.7 .
 
 The installation zip package can be build by
 
